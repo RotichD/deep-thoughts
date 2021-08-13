@@ -59,8 +59,49 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect login credentials');
             }
             
-            const token = signToken(user);
+            const token = signToken(user); 
             return { token, user };
+        },
+        addThought: async (parent, args, context) => {
+            if (context.user) {
+                const thought = await Thought.create({ ...args, username: context.user.username });
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { thoughts: thought._id } },
+                    { new: true } // without this Mongo returns the original documetn instead of the updated document
+                );
+
+                return thought;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addReaction: async (parent, { thoughtId, reactionBody }, context) => {
+            if (context.user) {
+                const updatedThought = await Thought.findOneAndUpdate(
+                    { _id: thoughtId },
+                    { $push: { reactions: { reactionBody, username: context.user.username } } },
+                    { new: true, runValiators: true }
+                );
+
+                return updatedThought;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addFriend: async (parent, { friendId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { friends: friendId } }, //Ensures friend can't be added twice on accident as opposed to using $push
+                    { new: true }
+                ).populate('friends');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!')
         }
     }
 };
