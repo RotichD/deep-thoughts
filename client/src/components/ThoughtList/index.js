@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import ForumRoundedIcon from "@material-ui/icons/ForumRounded";
 import Badge from "@material-ui/core/Badge";
 import FormatQuoteRoundedIcon from "@material-ui/icons/FormatQuoteRounded";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles({
   root: {
@@ -51,13 +52,17 @@ const ThoughtList = ({ thoughts, title }) => {
                   style={{ fontWeight: 700 }}
                   className="text-light"
                 >
+                  <Avatar className="mb-2">{thought.username.charAt(0).toUpperCase()}</Avatar>
                   {thought.username}
                 </Link>{" "}
                 posted on {thought.createdAt}
               </Typography>
               <Link to={`/thought/${thought._id}`}>
                 <Typography className={classes.text}>
-                  <FormatQuoteRoundedIcon style={{ transform: "scaleX(-1)" }} fontSize="small"/>
+                  <FormatQuoteRoundedIcon
+                    style={{ transform: "scaleX(-1)" }}
+                    fontSize="small"
+                  />
                   {thought.thoughtText}
                   <FormatQuoteRoundedIcon fontSize="small" />
                 </Typography>

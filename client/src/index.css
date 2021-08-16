@@ -748,7 +748,7 @@ nav a:hover {
   text-align: right;
 }
 
-.text-primary {
+/* .text-primary {
   color: var(--primary);
 }
 
@@ -774,7 +774,7 @@ nav a:hover {
 
 .text-error {
   color: var(--error);
-}
+} */
 
 /* BACKGROUND UTILS */
 .bg-primary {
