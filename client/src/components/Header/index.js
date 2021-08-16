@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  offset: theme.mixins.toolbar,
 }));
 
 const Header = () => {
@@ -37,7 +38,7 @@ const Header = () => {
   return (
     <header> 
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="logo-homepage-button" component={Link} to="/">
               <HomeRoundedIcon />
@@ -64,6 +65,7 @@ const Header = () => {
             </>
           </Toolbar>
         </AppBar>
+        <div className={classes.offset} />
       </div>
     </header>
   );
