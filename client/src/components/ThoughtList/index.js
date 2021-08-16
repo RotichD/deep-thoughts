@@ -52,7 +52,7 @@ const ThoughtList = ({ thoughts, title }) => {
                   style={{ fontWeight: 700 }}
                   className="text-light"
                 >
-                  <Avatar className="mb-2">{thought.username.charAt(0).toUpperCase()}</Avatar>
+                  <Avatar className="mb-2">{thought.username && thought.username.charAt(0).toUpperCase()}</Avatar>
                   {thought.username}
                 </Link>{" "}
                 posted on {thought.createdAt}
