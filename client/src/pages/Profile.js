@@ -2,18 +2,21 @@ import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 import ThoughtList from "../components/ThoughtList";
 import FriendList from "../components/FriendList";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import Auth from '../utils/auth';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Typography } from "@material-ui/core";
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { makeStyles } from '@material-ui/core/styles';
+import Auth from "../utils/auth";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { Button, Typography } from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
+import { makeStyles } from "@material-ui/core/styles";
+import { ADD_FRIEND } from "../utils/mutations";
+import PlusOneRoundedIcon from "@material-ui/icons/PlusOneRounded";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
-    '& > * + *': {
+    width: "100%",
+    "& > * + *": {
       marginTop: theme.spacing(2),
     },
     display: "flex",
@@ -24,14 +27,16 @@ const useStyles = makeStyles((theme) => ({
   alert: {
     width: "100%",
     margin: "5%",
-  }
+  },
 }));
-
 
 const Profile = () => {
   const classes = useStyles();
 
+  const [open, setOpen] = React.useState(false);
+
   const { username: userParam } = useParams();
+  const [addFriend] = useMutation(ADD_FRIEND);
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
@@ -45,28 +50,68 @@ const Profile = () => {
   }
 
   if (loading) {
-    return <div><CircularProgress /></div>;
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
   }
 
   if (!user?.username) {
     return (
       <div className={classes.root}>
-      <Alert severity="info" className={classes.alert}>
-        <AlertTitle>Error</AlertTitle>
-        <Typography variant="h5">
-        You need to be logged in to see this page. Use the navigation links above to sign up or log in!
-      </Typography>
-      </Alert>
-    </div>
+        <Alert severity="info" className={classes.alert}>
+          <AlertTitle>Error</AlertTitle>
+          <Typography variant="h5">
+            You need to be logged in to see this page. Use the navigation links
+            above to sign up or log in!
+          </Typography>
+        </Alert>
+      </div>
     );
   }
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClick = async () => {
+    try {
+      await addFriend({
+        variables: { id: user._id },
+      });
+      setOpen(true);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <div>
-      <div className="flex-row mb-3">
+      <div className="flex-row my-3">
         <Typography variant="h3">
-          Viewing {userParam ? `{user.username}'s` : 'your'} profile
+          Viewing {userParam ? `${user.username}'s` : "your"} profile
         </Typography>
+
+        {userParam && (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClick}
+            style={{ marginLeft: "auto" }}
+          >
+            Add Friend <PlusOneRoundedIcon />
+          </Button>
+        )}
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success" variant="filled">
+            Successfully Added Friend!
+          </Alert>
+        </Snackbar>
       </div>
 
       <div className="flex-row justify-space-between mb-3">

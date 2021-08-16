@@ -51,6 +51,7 @@ const Signup = () => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log('test-sub')
 
     //error handling
     try {
@@ -108,7 +109,7 @@ const Signup = () => {
                   required
                   margin="normal"
                 />
-                <Button variant="contained" color="primary" type="submit">
+                <Button variant="contained" color="primary" type="submit" onClick={handleFormSubmit}>
                   Submit
                 </Button>
               </FormControl>
