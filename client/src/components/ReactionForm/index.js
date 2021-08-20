@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ADD_REACTION } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
+import { Button } from '@material-ui/core';
+
 
 const ReactionForm = ({ thoughtId }) => {
   const [reactionBody, setBody] = useState("");
@@ -30,7 +32,7 @@ const ReactionForm = ({ thoughtId }) => {
   };
 
   return (
-    <div>
+    <div className="mb-3">
       <p className="m-0">
         Character Count: {characterCount}/280
         {error && <span className="ml-2">Something went wrong...</span>}
@@ -44,13 +46,14 @@ const ReactionForm = ({ thoughtId }) => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
           value={reactionBody}
+          style={{ fontFamily: "Rubik" }}
         ></textarea>
 
-        <button className="btn col-12 col-md-3" type="submit">
+        <Button color="primary" size="small" variant="contained" type="submit" onClick={handleFormSubmit} style={{ width: "20%" }}>
           Submit
-        </button>
+        </Button>
       </form>
-    </div>
+    </div> 
   );
 };
 

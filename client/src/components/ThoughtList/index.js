@@ -35,6 +35,7 @@ const useStyles = makeStyles({
 
 const ThoughtList = ({ thoughts, title }) => {
   const classes = useStyles();
+  
 
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;

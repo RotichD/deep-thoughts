@@ -21,7 +21,7 @@ const FriendList = ({ friendCount, username, friends }) => {
                     {friends.map(friend => (
                         <Grid item xs={12}>
                         <Button color="primary" variant="contained" key={friend._id}>
-                            <Link to={`/profile/${friend.username}`}>{friend.username}</Link>
+                            <Link to={`/profile/${friend.username}`} style={{ color: "white" }}>{friend.username}</Link>
                         </Button>
                         </Grid>
                     ))}

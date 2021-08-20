@@ -1,10 +1,53 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary">
+      {'Copyright © '}
+      <Link  href="https://github.com/RotichD/">
+        Dylan Rotich
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
+    padding: theme.spacing(3, 2),
+    textAlign: "center",
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+  },
+}));
 
 const Footer = () => {
+
+  const classes = useStyles();
+
   return (
-    <footer className="w-100 mt-auto bg-secondary p-4">
-      <div className="container">&copy;2020 by Dylan Rotich</div>
-    </footer>
+    <div className={classes.root}>
+      <footer className={classes.footer}>
+        <Container maxWidth="sm">
+          <Typography variant="body1">Dylan Rotich - Full-Stack Web Developer</Typography>
+          <Copyright />
+        </Container>
+      </footer>
+    </div>
   );
 };
 

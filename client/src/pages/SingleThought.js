@@ -12,6 +12,7 @@ import FormatQuoteRoundedIcon from "@material-ui/icons/FormatQuoteRounded";
 import Avatar from "@material-ui/core/Avatar";
 import ReactionForm from '../components/ReactionForm';
 import Auth from '../utils/auth';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +34,11 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  load: {
+    justifyContent: "center",
+    padding: "2rem",
+    alignItems: "center"
+  }
 });
 
 const SingleThought = (props) => {
@@ -47,7 +53,7 @@ const SingleThought = (props) => {
   const thought = data?.thought || {};
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={classes.load}><CircularProgress /></div>;
   }
 
   return (
@@ -81,6 +87,7 @@ const SingleThought = (props) => {
       {thought.reactionCount > 0 && (
         <ReactionList reactions={thought.reactions} />
       )}
+      {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
     </>
   );
 };

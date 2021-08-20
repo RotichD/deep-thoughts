@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import FormatQuoteRoundedIcon from "@material-ui/icons/FormatQuoteRounded";
 import Typography from "@material-ui/core/Typography";
-import SubjectRoundedIcon from "@material-ui/icons/SubjectRounded";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
