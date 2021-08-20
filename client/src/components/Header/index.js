@@ -1,33 +1,71 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
+import { makeStyles } from '@material-ui/core/styles'; // Material UI Components
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  offset: theme.mixins.toolbar,
+}));
 
 const Header = () => {
+  const classes = useStyles();
+
   const logout = event => {
     event.preventDefault();
     Auth.logout();
   };
 
-  return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Link to="/">
-          <h1>Deep Thoughts</h1>
-        </Link>
+  // // for header className="bg-secondary mb-4 py-2 flex-row align-center"
+  // //for div "container flex-row justify-space-between-lg justify-center align-center"
 
-        <nav className="text-center">
-          {Auth.loggedIn() ? (
+  return (
+    <header> 
+      <div className={classes.root}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="logo-homepage-button" component={Link} to="/">
+              <HomeRoundedIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title} component={Link} to="/">
+              Deep Thoughts
+            </Typography>
             <>
-              <Link to="/profile">Me</Link>
-              <a href="/" onClick={logout}>Logout</a>
+              {Auth.loggedIn() ? (
+                <>
+                  <Button component={Link} to="/profile">
+                    <AccountCircleRoundedIcon />
+                  </Button>
+                  <Button color="inherit" href="/" onClick={logout}>
+                    <ExitToAppRoundedIcon />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button color="inherit" component={Link} to="/login">Login</Button>
+                  <Button color="inherit" component={Link} to="/signup">Signup</Button>
+                </>
+              )}
             </>
-          ) : (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </>
-          )}
-        </nav>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.offset} />
       </div>
     </header>
   );

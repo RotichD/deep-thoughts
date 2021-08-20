@@ -4,7 +4,9 @@ import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
 import ThoughtList from '../components/ThoughtList';
 import Auth from '../utils/auth';
 import FriendList from '../components/FriendList';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ThoughtForm from '../components/ThoughtForm';
+
 
 
 const Home = () => {
@@ -26,7 +28,7 @@ const Home = () => {
         )}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
           {loading ? (
-            <div>Loading...</div>
+            <div><CircularProgress /></div>
           ) : (
             <ThoughtList thoughts={thoughts} title="Some Feed for Thought(s)..." />
           )}

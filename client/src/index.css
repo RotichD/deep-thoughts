@@ -26,8 +26,8 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inconsolata', monospace;
-  font-weight: 400;
+  font-family: 'Rubik', monospace;
+  font-weight: 300;
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
@@ -40,8 +40,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Karla', sans-serif;
-  font-weight: 700;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
   margin: 5px 0;
   line-height: 1.25;
 }
@@ -138,6 +138,7 @@ nav a:hover {
   border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
+  justify-content: center;
 }
 
 .card-header {
@@ -747,7 +748,7 @@ nav a:hover {
   text-align: right;
 }
 
-.text-primary {
+/* .text-primary {
   color: var(--primary);
 }
 
@@ -773,7 +774,7 @@ nav a:hover {
 
 .text-error {
   color: var(--error);
-}
+} */
 
 /* BACKGROUND UTILS */
 .bg-primary {
