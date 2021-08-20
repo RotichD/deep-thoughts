@@ -17,6 +17,21 @@ import NoMatch from "./pages/NoMatch";
 import SingleThought from "./pages/SingleThought";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#14213d'
+    },
+    secondary: {
+      main: '#fca311'
+    },
+    typography: {
+      fontFamily: 'Rubik, Arial'
+    }
+  },
+});
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -40,21 +55,23 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <Header />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/profile/:username?" component={Profile} />
-            <Route exact path="/thought/:id" component={SingleThought} />
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Header />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/thought/:id" component={SingleThought} />
 
-            <Route component={NoMatch} />
-          </Switch>
-        </div>
-        <Footer />
-      </Router>
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+          <Footer />
+        </Router>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }

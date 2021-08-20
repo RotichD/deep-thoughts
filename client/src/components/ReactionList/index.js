@@ -13,6 +13,12 @@ const useStyles = makeStyles({
     marginBottom: "2rem",
     marginTop: "2rem",
   },
+  root2: {
+    minWidth: 275,
+    marginBottom: "2rem",
+    marginTop: "2rem",
+    backgroundColor: '#fca311'
+  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -37,7 +43,7 @@ const ReactionList = ({ reactions }) => {
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title}>Reactions</Typography>
-          <Card className={classes.root}>
+          <Card className={classes.root2}>
             <CardContent>
               {reactions &&
                 reactions.map((reaction) => (
