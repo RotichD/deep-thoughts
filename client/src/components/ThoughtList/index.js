@@ -14,7 +14,8 @@ import Avatar from "@material-ui/core/Avatar";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginBottom: "2rem",
+    marginBottom: "1rem",
+    marginTop: "2rem"
   },
   bullet: {
     display: "inline-block",
