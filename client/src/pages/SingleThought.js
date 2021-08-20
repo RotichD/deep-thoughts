@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import FormatQuoteRoundedIcon from "@material-ui/icons/FormatQuoteRounded";
 import Avatar from "@material-ui/core/Avatar";
+import ReactionForm from '../components/ReactionForm';
+import Auth from '../utils/auth';
 
 const useStyles = makeStyles({
   root: {

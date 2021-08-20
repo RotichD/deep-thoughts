@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { ADD_FRIEND } from "../utils/mutations";
 import PlusOneRoundedIcon from "@material-ui/icons/PlusOneRounded";
 import Snackbar from "@material-ui/core/Snackbar";
+import ThoughtForm from "../components/ThoughtForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "5%",
   },
 }));
+
 
 const Profile = () => {
   const classes = useStyles();
@@ -59,6 +61,7 @@ const Profile = () => {
 
   if (!user?.username) {
     return (
+
       <div className={classes.root}>
         <Alert severity="info" className={classes.alert}>
           <AlertTitle>Error</AlertTitle>
@@ -84,7 +87,9 @@ const Profile = () => {
       await addFriend({
         variables: { id: user._id },
       });
+
       setOpen(true);
+
     } catch (e) {
       console.error(e);
     }
@@ -130,6 +135,7 @@ const Profile = () => {
           />
         </div>
       </div>
+      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
     </div>
   );
 };
