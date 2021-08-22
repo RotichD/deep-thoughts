@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_THOUGHT } from "../../utils/mutations";
 import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
+import { Button } from '@material-ui/core';
 
 const ThoughtForm = () => {
   const [thoughtText, setText] = useState("");
@@ -63,15 +64,18 @@ const ThoughtForm = () => {
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
+        
         <textarea
           placeholder="Talk to em!..."
           value={thoughtText}
           className="form-input col-12 col-md-9"
           onChange={handleChange}
-        ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+          style={{ fontFamily: "Rubik" }}
+        >
+        </textarea>
+        <Button color="primary" size="small" variant="contained" type="submit" onClick={handleFormSubmit} style={{ width: "20%" }}>
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );
