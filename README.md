@@ -7,7 +7,8 @@ This application allows users to share comments abour random thoughts they have.
 - [Credits](#credits)
 - [License](#license)
 ## Installation
-View live website at __. To install as a PWA on ios, simple click the share button, then add to homescreen.
+View live website at https://deepth0ughts.herokuapp.com. To install as a PWA on ios, simple click the share button, then add to homescreen.
+![screenshot](/screenshot.png)
 ## Usage
 - Create an account
 - Login
