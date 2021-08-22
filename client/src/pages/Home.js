@@ -28,9 +28,9 @@ const Home = () => {
         )}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
           {loading ? (
-            <div><CircularProgress /></div>
+            <div style={{ display: "flex", justifyContent: "center" }}><CircularProgress /></div>
           ) : (
-            <ThoughtList thoughts={thoughts} title="Some Feed for Thought(s)..." />
+            <ThoughtList thoughts={thoughts} title="Community Thoughts" />
           )}
         </div>
         {loggedIn && userData ? (

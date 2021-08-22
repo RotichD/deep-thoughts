@@ -53,7 +53,7 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <CircularProgress />
       </div>
     );

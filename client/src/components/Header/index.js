@@ -43,7 +43,7 @@ const Header = () => {
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="logo-homepage-button" component={Link} to="/">
               <HomeRoundedIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title} component={Link} to="/">
+            <Typography variant="h6" className={classes.title} component={Link} to="/" style={{ fontFamily: 'Rubik', fontWeight: 300 }}>
               Deep Thoughts
             </Typography>
             <>
